@@ -17,7 +17,11 @@ export default connect(store => ({ messages: store.messages }))(
         id="rcw-messages-container"
       >
         {props.messages.map(message => (
-          <Message key={message.get("id")} text={message.get("text")} />
+          <Message
+            key={message.get("id")}
+            sender={message.get("sender")}
+            text={message.get("text")}
+          />
         ))}
       </div>
     );

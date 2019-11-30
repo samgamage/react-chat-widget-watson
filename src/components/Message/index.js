@@ -6,17 +6,20 @@ export default function Message(props) {
     <div
       css={css`
         margin: 10px;
-        display: flex;
         word-wrap: break-word;
+        display: flex;
       `}
     >
       <div
         css={css`
-          background-color: lightsteelblue;
-          border-radius: 10px;
-          padding: 15px;
+          background-color: ${props.sender === "client"
+            ? "#a3eaf7"
+            : "#f4f7f9"};
+          border-radius: 1em;
+          padding: 0.75rem;
           max-width: 215px;
           text-align: left;
+          margin-left: ${props.sender === "client" ? "auto" : "none"};
         `}
       >
         {props.text}

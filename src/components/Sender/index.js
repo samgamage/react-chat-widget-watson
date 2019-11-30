@@ -4,7 +4,7 @@ import { createRef, useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { connect } from "react-redux";
 import { animateScroll } from "react-scroll";
-import { addUserMessage } from "../../store/actions";
+import { addResponseMessage, addUserMessage } from "../../store/actions";
 
 export default connect()(function Sender(props) {
   const messagesInputRef = createRef();
@@ -25,11 +25,27 @@ export default connect()(function Sender(props) {
             smooth: false,
             isDynamic: true
           }),
-        100
+        50
       );
     }
     setMessage("");
     event.target.message.value = "";
+
+    setTimeout(() => {
+      props.dispatch(addResponseMessage("Test"));
+    }, 300);
+    setTimeout(
+      () =>
+        animateScroll.scrollToBottom({
+          containerId: "rcw-messages-container",
+          duration: 100,
+          delay: 0,
+          offset: 50,
+          smooth: false,
+          isDynamic: true
+        }),
+      350
+    );
   };
 
   useEffect(() => {
@@ -42,7 +58,7 @@ export default connect()(function Sender(props) {
       css={css`
         align-items: center;
         display: flex;
-        background-color: lightgray;
+        background-color: #f4f7f9;
         height: 45px;
         padding: 5px;
         border-radius: 0 0 10px 10px;
@@ -58,7 +74,7 @@ export default connect()(function Sender(props) {
         css={css`
           width: 100%;
           border: 0;
-          background-color: lightgray;
+          background-color: #f4f7f9;
           height: 30px;
           padding-left: 15px;
 
