@@ -14,6 +14,7 @@ export default connect(store => ({ messages: store.messages }))(
           overflow-y: scroll;
           -webkit-overflow-scrolling: touch;
         `}
+        id="rcw-messages-container"
       >
         {props.messages.map(message => (
           <Message key={message.get("id")} text={message.get("text")} />

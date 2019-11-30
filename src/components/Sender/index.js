@@ -3,25 +3,39 @@ import { css, jsx } from "@emotion/core";
 import { createRef, useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { connect } from "react-redux";
+import { animateScroll } from "react-scroll";
 import { addUserMessage } from "../../store/actions";
 
 export default connect()(function Sender(props) {
   const messagesInputRef = createRef();
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    messagesInputRef.current.focus();
-  }, [messagesInputRef]);
-
   const onSend = event => {
     event.preventDefault();
     const userInput = event.target.message.value;
     if (userInput.trim()) {
-      console.log(userInput);
       props.dispatch(addUserMessage(userInput));
+      setTimeout(
+        () =>
+          animateScroll.scrollToBottom({
+            containerId: "rcw-messages-container",
+            duration: 100,
+            delay: 0,
+            offset: 50,
+            smooth: false,
+            isDynamic: true
+          }),
+        100
+      );
     }
+    setMessage("");
     event.target.message.value = "";
   };
+
+  useEffect(() => {
+    messagesInputRef.current.focus();
+  }, [messagesInputRef]);
+
   return (
     <form
       onSubmit={onSend}
@@ -59,6 +73,12 @@ export default connect()(function Sender(props) {
         css={css`
           background: none;
           border: 0;
+
+          &:disabled {
+            svg {
+              color: lightgray !important;
+            }
+          }
         `}
       >
         <IoMdSend size={32} color="gray" />
