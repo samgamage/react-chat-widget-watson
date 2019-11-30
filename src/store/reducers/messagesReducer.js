@@ -8,7 +8,10 @@ const initialState = List([]);
 
 const messagesReducer = {
   [actionTypes.ADD_NEW_USER_MESSAGE]: (state, { text }) =>
-    state.push(createNewMessage(text, MESSAGE_SENDER.CLIENT))
+    state.push(createNewMessage(text, MESSAGE_SENDER.CLIENT)),
+
+  [actionTypes.ADD_NEW_RESPONSE_MESSAGE]: (state, { text }) =>
+    state.push(createNewMessage(text, MESSAGE_SENDER.RESPONSE))
 };
 
 export default (state = initialState, action) =>
