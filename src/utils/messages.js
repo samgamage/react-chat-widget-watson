@@ -1,4 +1,5 @@
 import { Map } from "immutable";
+import uuid from "uuid";
 import Message from "../components/Widget/components/Conversation/components/Messages/components/Message";
 import {
   MESSAGES_TYPES,
@@ -10,6 +11,7 @@ export function createNewMessage(text, sender) {
   return Map({
     type: MESSAGES_TYPES.TEXT,
     component: Message,
+    id: uuid.v4(),
     text,
     sender,
     showAvatar: sender === MESSAGE_SENDER.RESPONSE

@@ -1,13 +1,15 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
-import Conversation from "./components/Conversation";
+import Conversation from "../Conversation";
+import Launcher from "../Launcher";
 
-export default connect(store => ({ messages: store.messages }))(function Widget(
-  props
-) {
+export default connect(store => ({
+  showChat: store.behavior.get("showChat")
+}))(function Widget(props) {
   return (
     <div
+      id="rcw-container"
       css={css`
         bottom: 0;
         display: flex;
@@ -17,11 +19,12 @@ export default connect(store => ({ messages: store.messages }))(function Widget(
         position: fixed;
         right: 0;
         z-index: 999;
+        width: ${props.showChat ? "90vh" : "100%"};
       `}
     >
       {console.log(props)}
-      Widget
-      <Conversation />
+      {props.showChat && <Conversation />}
+      <Launcher />
     </div>
   );
 });
