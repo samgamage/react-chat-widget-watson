@@ -26,13 +26,14 @@ export default function Header() {
       <Styled.p as="div" sx={{ margin: 0 }}>
         Header
       </Styled.p>
-      <div>
+      <div sx={{ display: "flex" }}>
         <Popover closeOnBlur={false}>
           <PopoverTrigger>
             <button
               sx={{
                 background: "transparent",
-                border: 0
+                border: 0,
+                m: "auto"
               }}
             >
               <IoMdMore
