@@ -1,13 +1,11 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { animateScroll } from "react-scroll";
 import Header from "../Header";
 import Messages from "../Messages";
 import Sender from "../Sender";
 
-export default connect()(function Conversation(props) {
+export default connect()(function Conversation() {
   useEffect(() => {
     animateScroll.scrollToBottom({
       containerId: "rcw-messages-container",
@@ -20,16 +18,10 @@ export default connect()(function Conversation(props) {
   }, []);
 
   return (
-    <div
-      css={css`
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      `}
-    >
+    <React.Fragment>
       <Header />
       <Messages />
       <Sender />
-    </div>
+    </React.Fragment>
   );
 });

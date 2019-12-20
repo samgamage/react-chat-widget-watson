@@ -1,21 +1,28 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { AnimatePresence } from "framer-motion";
 import { connect } from "react-redux";
+import { jsx, Styled } from "theme-ui";
 import Message from "../Message";
 
-export default connect(store => ({ messages: store.messages }))(
-  function Messages(props) {
-    return (
-      <div
-        css={css`
-          background-color: white;
-          height: 50vh;
-          max-height: 410px;
-          overflow-y: scroll;
-          -webkit-overflow-scrolling: touch;
-        `}
-        id="rcw-messages-container"
-      >
+export default connect(store => ({
+  messages: store.messages,
+  showChat: store.behavior.get("showChat")
+}))(function Messages(props) {
+  const isEmptyList = props.messages.size === 0;
+
+  return (
+    <div
+      sx={{
+        backgroundColor: "white",
+        height: "50vh",
+        maxHeight: "410px",
+        overflowY: "scroll",
+        p: 1
+      }}
+      id="rcw-messages-container"
+    >
+      {isEmptyList && <Styled.div></Styled.div>}
+      <AnimatePresence initial={false}>
         {props.messages.map(message => (
           <Message
             key={message.get("id")}
@@ -23,7 +30,7 @@ export default connect(store => ({ messages: store.messages }))(
             text={message.get("text")}
           />
         ))}
-      </div>
-    );
-  }
-);
+      </AnimatePresence>
+    </div>
+  );
+});
