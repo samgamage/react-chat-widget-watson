@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /** @jsx jsx */
+import "@babel/polyfill";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { connect } from "react-redux";
@@ -9,15 +9,21 @@ import { addResponseMessage } from "../../store/actions";
 import Conversation from "../Conversation";
 import Launcher from "../Launcher";
 
-export default connect(store => ({
+const getPropsFromState = store => ({
   showChat: store.behavior.get("showChat")
-}))(function Widget(props) {
+});
+
+export default connect(getPropsFromState)(function Widget(props) {
   useEffect(() => {
     (async () => {
       const { generic } = await sendMessage("");
       const text = generic[0].text;
       props.dispatch(addResponseMessage(text));
     })();
+
+    if (process.env.NODE_ENV === "production" && !window.Dfschat) {
+      throw Error("Dfschat is not initialized on the window.");
+    }
   }, []);
 
   const conversationAnimationConfig = {

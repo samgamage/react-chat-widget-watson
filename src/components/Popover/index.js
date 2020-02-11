@@ -355,7 +355,9 @@ const PopoverFooter = props => (
 
 const PopoverBody = props => {
   const { bodyId } = usePopoverContext();
-  return <Box id={bodyId} flex="1" px={3} py={2} {...props} />;
+  return (
+    <Box id={bodyId} sx={{ font: "body" }} flex="1" px={3} py={2} {...props} />
+  );
 };
 
 /////////////////////////////////////////////////////////////////////

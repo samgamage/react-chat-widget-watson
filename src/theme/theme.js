@@ -49,7 +49,7 @@ const radii = {
 };
 
 const opacity = {
-  "0": "0",
+  0: "0",
   "20%": "0.2",
   "40%": "0.4",
   "60%": "0.6",
@@ -64,35 +64,9 @@ const borders = {
   "4px": "4px solid"
 };
 
-const styles = {
-  h1: {
-    fontSize: 32,
-    fontFamily: "heading",
-    fontWeight: "heading",
-    color: "white",
-    mt: 4,
-    mb: 2
-  },
-  p: {
-    fontSize: 16,
-    fontFamily: "body",
-    fontWeight: "body",
-    color: "white",
-    mb: 1
-  },
-  input: {
-    fontFamily: "body"
-  }
-};
-
 const letterSpacings = {
   body: "normal",
   caps: "0.2em"
-};
-
-const lineHeights = {
-  body: 1.5,
-  heading: 1.125
 };
 
 const theme = {
@@ -118,9 +92,12 @@ const theme = {
     heading: 700,
     bold: 700
   },
-  lineHeights,
-  letterSpacings,
-  styles
+  styles: {
+    div: {
+      fontFamily: "body"
+    }
+  },
+  letterSpacings
 };
 
 export default theme;

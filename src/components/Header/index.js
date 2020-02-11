@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { IoMdMore, IoMdPaper, IoMdPower } from "react-icons/io";
+import { connect } from "react-redux";
 import { jsx, Styled } from "theme-ui";
 import MenuItem from "../MenuItem";
 import {
@@ -9,13 +10,21 @@ import {
   PopoverTrigger
 } from "../Popover";
 
-export default function Header() {
+const getPropsFromState = store => ({
+  appearance: store.config.get("appearance")
+});
+
+const defaultAppearance = {
+  header_text: "Chat Widget",
+  header_text_color: "#fff"
+};
+
+export default connect(getPropsFromState)(function Header({ appearance }) {
   return (
     <div
       sx={{
         backgroundColor: "primary",
         borderRadius: "10px 10px 0 0",
-        color: "white",
         display: "flex",
         textAlign: "center",
         justifyContent: "space-between",
@@ -23,8 +32,16 @@ export default function Header() {
         padding: "1rem"
       }}
     >
-      <Styled.p as="div" sx={{ margin: 0 }}>
-        Header
+      <Styled.p
+        as="div"
+        sx={{
+          margin: 0,
+          fontFamily: "heading",
+          color:
+            appearance.header_text_color || defaultAppearance.header_text_color
+        }}
+      >
+        {appearance.header_text || defaultAppearance.header_text}
       </Styled.p>
       <div sx={{ display: "flex" }}>
         <Popover closeOnBlur={false}>
@@ -53,4 +70,4 @@ export default function Header() {
       </div>
     </div>
   );
-}
+});

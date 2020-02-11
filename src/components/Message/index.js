@@ -37,7 +37,8 @@ export default function Message(props) {
           padding: "0.75rem",
           maxWidth: "215px",
           textAlign: "left",
-          marginLeft: props.sender === "client" ? "auto" : "none"
+          marginLeft: props.sender === "client" ? "auto" : "none",
+          fontFamily: "body"
         }}
       >
         {props.text}

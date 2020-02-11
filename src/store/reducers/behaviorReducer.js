@@ -5,7 +5,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = Map({
   showChat: false,
   disabledInput: false,
-  msgLoader: false
+  msgLoader: false,
+  config: window.Dfschat || {}
 });
 
 const behaviorReducer = {
