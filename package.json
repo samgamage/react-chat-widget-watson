@@ -46,7 +46,7 @@
     "react-scroll": "^1.7.14",
     "redux": "^4.0.4",
     "sass-loader": "^8.0.2",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^17.2.3",
     "serve": "^11.3.0",
     "shx": "^0.3.2",
     "style-loader": "^1.1.3",
